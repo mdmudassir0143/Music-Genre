@@ -15,6 +15,6 @@ export default function Result({fileName}) {
         }
     }, [])
   return (
-    <div style={{fontSize:"42px", textAlign:"center"}}>The Music genre of "{fileName}" is: <span style={{textDecoration:"underline"}}>{genre}</span></div>
+    <div style={{fontSize:"42px", textAlign:"center"}}>The Music genre is: <span style={{textDecoration:"underline"}}>{genre}</span></div>
   )
 }
