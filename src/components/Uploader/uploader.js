@@ -1,21 +1,24 @@
 import { useState } from 'react'
 import './uploader.css'
 import { MdCloudUpload, MdDelete } from 'react-icons/md'
+import Result from '../Result'
 
 function Uploader() {
 
   const [image, setImage] = useState(null)
   const [fileName, setFileName] = useState("No selected file")
-  return (
+  const [flag, setFlag] = useState(false);
+  return (!flag?
     <main>
       <form
-      onClick={() => document.querySelector(".input-field").click()}
+      onClick={(e) => {document.querySelector(".input-field").click()}}
+      style={{height:"auto", width:"fit-content"}}
       >
         <input type="file" accept='audio/*' className='input-field' hidden 
         onChange={({ target: {files}}) => {
           files[0] && setFileName(files[0].name)
           if(files){
-            setImage(URL.createObjectURL(files[0]))
+            // setImage(URL.createObjectURL(files[0]))
           }
         }}
          />
@@ -30,9 +33,10 @@ function Uploader() {
       }
 
       </form>
+      <button style={{padding:"7px 15px", marginTop:"20px", border:"0", background:"black",color:"white"}} onClick={()=>{if(fileName.indexOf(".")!=-1){setFlag(true);}else {alert("Choose File")}}}>Classify Music -></button>
 
       <section className='uploaded-row'>
-        <span className='upload-content'>
+        <span className='upload-content' style={{cursor:"pointer"}}>
           
           <MdDelete
           size={40}
@@ -46,6 +50,8 @@ function Uploader() {
       </section>
 
     </main>
+    :
+    <Result fileName={fileName}/>
   )
 }
 
